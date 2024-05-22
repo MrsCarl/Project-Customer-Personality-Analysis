@@ -36,7 +36,7 @@ warnings.filterwarnings('ignore')
 
 
 #Loading the dataset
-customerdata = pd.read_excel("../DS Project1/marketing_campaign.xlsx")
+customerdata = pd.read_excel("/workspaces/Project-Customer-Personality-Analysis/marketing_campaign.xlsx")
 print("Number of datapoints:", len(customerdata))
 customerdata
 
@@ -210,8 +210,16 @@ customerdata.shape
 
 # In[17]:
 
+# Convert all categorical variables to numeric using one-hot encoding
+customerdata_encoded = pd.get_dummies(customerdata)
 
-sns.heatmap(customerdata.corr())
+# Compute the correlation matrix
+corr_matrix = customerdata_encoded.corr()
+
+# Plot heatmap
+sns.heatmap(corr_matrix, annot=True, cmap='coolwarm')
+plt.show()
+#sns.heatmap(customerdata.corr())
 
 
 # # Data preprocessing
